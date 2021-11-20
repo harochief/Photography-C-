@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E72528B1-4596-4F32-91C3-CE7E6B202C1E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Identity4Example</RootNamespace>
+    <AssemblyName>Identity4Example</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0-alpha1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0-alpha1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0-alpha1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\animate.min.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\index.html" />
+    <Content Include="css\magnific-popup.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\style-blue.css" />
+    <Content Include="css\style-bluedark.css" />
+    <Content Include="css\style-blueshade.css" />
+    <Content Include="css\style-green.css" />
+    <Content Include="css\style-GreenRed.css" />
+    <Content Include="css\style-red.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\vendor.bundle.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="form\index.html" />
+    <Content Include="form\php-mailer\examples\contents.html" />
+    <Content Include="form\php-mailer\examples\contentsutf8.html" />
+    <Content Include="form\php-mailer\examples\images\phpmailer.png" />
+    <Content Include="form\php-mailer\examples\images\phpmailer_mini.png" />
+    <Content Include="form\php-mailer\examples\index.html" />
+    <Content Include="form\php-mailer\examples\scripts\shAutoloader.js" />
+    <Content Include="form\php-mailer\examples\scripts\shBrushPhp.js" />
+    <Content Include="form\php-mailer\examples\scripts\shCore.js" />
+    <Content Include="form\php-mailer\examples\scripts\shLegacy.js" />
+    <Content Include="form\php-mailer\examples\scripts\XRegExp.js" />
+    <Content Include="form\php-mailer\examples\styles\shCore.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreDefault.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreDjango.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreEclipse.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreEmacs.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreFadeToGrey.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreMDUltra.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreMidnight.css" />
+    <Content Include="form\php-mailer\examples\styles\shCoreRDark.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeAppleScript.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeDefault.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeDjango.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeEclipse.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeEmacs.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeFadeToGrey.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeMDUltra.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeMidnight.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeRDark.css" />
+    <Content Include="form\php-mailer\examples\styles\shThemeVisualStudio.css" />
+    <Content Include="form\php-mailer\examples\styles\wrapping.png" />
+    <Content Include="form\php-mailer\index.html" />
+    <Content Include="image\arrow-next-g.png" />
+    <Content Include="image\arrow-next-w.png" />
+    <Content Include="image\arrow-prev-g.png" />
+    <Content Include="image\arrow-prev-w.png" />
+    <Content Include="image\banner-inner.jpg" />
+    <Content Include="image\client-logo-a.png" />
+    <Content Include="image\client-logo-b.png" />
+    <Content Include="image\client-logo-c.png" />
+    <Content Include="image\client-logo-d.png" />
+    <Content Include="image\client-logo-e.png" />
+    <Content Include="image\client-logo-f.png" />
+    <Content Include="image\client-logo-g.png" />
+    <Content Include="image\client-logo-h.png" />
+    <Content Include="image\favicon.png" />
+    <Content Include="image\form-bg.jpg" />
+    <Content Include="image\gallery\g1-lg.jpg" />
+    <Content Include="image\gallery\g1.jpg" />
+    <Content Include="image\gallery\g2-lg.jpg" />
+    <Content Include="image\gallery\g2.jpg" />
+    <Content Include="image\gallery\g3-lg.jpg" />
+    <Content Include="image\gallery\g3.jpg" />
+    <Content Include="image\gallery\g4-lg.jpg" />
+    <Content Include="image\gallery\g4.jpg" />
+    <Content Include="image\gallery\g5-lg.jpg" />
+    <Content Include="image\gallery\g5.jpg" />
+    <Content Include="image\gallery\g6-lg.jpg" />
+    <Content Include="image\gallery\g6.jpg" />
+    <Content Include="image\gallery\g7-lg.jpg" />
+    <Content Include="image\gallery\g7.jpg" />
+    <Content Include="image\gallery\g8-lg.jpg" />
+    <Content Include="image\gallery\g8.jpg" />
+    <Content Include="image\gallery\index.html" />
+    <Content Include="image\index.html" />
+    <Content Include="image\logo-white.png" />
+    <Content Include="image\logo-white2x.png" />
+    <Content Include="image\logo-white3.png" />
+    <Content Include="image\logo-white6.png" />
+    <Content Include="image\logo.png" />
+    <Content Include="image\logo1.png" />
+    <Content Include="image\logo2.png" />
+    <Content Include="image\logo2x.png" />
+    <Content Include="image\logo3.png" />
+    <Content Include="image\logo4.png" />
+    <Content Include="image\logo5.png" />
+    <Content Include="image\news-a.jpg" />
+    <Content Include="image\news-b.jpg" />
+    <Content Include="image\news-c.jpg" />
+    <Content Include="image\news-d.jpg" />
+    <Content Include="image\news-lg-a.jpg" />
+    <Content Include="image\news-thumb-a.jpg" />
+    <Content Include="image\news-thumb-b.jpg" />
+    <Content Include="image\news-thumb-c.jpg" />
+    <Content Include="image\news-thumb-d.jpg" />
+    <Content Include="image\partner-logo-a.png" />
+    <Content Include="image\partner-logo-b.png" />
+    <Content Include="image\photo-a.jpg" />
+    <Content Include="image\photo-b.jpg" />
+    <Content Include="image\photo-c.jpg" />
+    <Content Include="image\photo-d.jpg" />
+    <Content Include="image\photo-e.jpg" />
+    <Content Include="image\photo-f.jpg" />
+    <Content Include="image\photo-g.jpg" />
+    <Content Include="image\photo-h.jpg" />
+    <Content Include="image\photo-i.jpg" />
+    <Content Include="image\photo-j.jpg" />
+    <Content Include="image\photo-k.jpg" />
+    <Content Include="image\photo-l.jpg" />
+    <Content Include="image\photo-md-a.jpg" />
+    <Content Include="image\photo-sq-a.jpg" />
+    <Content Include="image\photo-sq-b.jpg" />
+    <Content Include="image\photo-sq-c.jpg" />
+    <Content Include="image\plx-dark.jpg" />
+    <Content Include="image\slider-a.jpg" />
+    <Content Include="image\slider-b.jpg" />
+    <Content Include="image\slider-c.jpg" />
+    <Content Include="image\slider-d.jpg" />
+    <Content Include="image\slider-e.jpg" />
+    <Content Include="image\team-sq-a.jpg" />
+    <Content Include="image\team-sq-b.jpg" />
+    <Content Include="image\team-sq-c.jpg" />
+    <Content Include="image\team-sq-d.jpg" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\filterizr.min.js" />
+    <Content Include="js\form.plugins.js" />
+    <Content Include="js\gmaps.js" />
+    <Content Include="js\index.html" />
+    <Content Include="js\jquery.bundle.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\magnific-popup.min.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\parallaxie.js" />
+    <Content Include="js\script.js" />
+    <Content Include="packages.config" />
+    <Content Include="form\contact.php" />
+    <Content Include="form\php-mailer\class.phpmailer.php" />
+    <Content Include="form\php-mailer\class.phpmaileroauth.php" />
+    <Content Include="form\php-mailer\class.phpmaileroauthgoogle.php" />
+    <Content Include="form\php-mailer\class.pop3.php" />
+    <Content Include="form\php-mailer\class.smtp.php" />
+    <Content Include="form\php-mailer\composer.json" />
+    <Content Include="form\php-mailer\composer.lock" />
+    <Content Include="form\php-mailer\examples\code_generator.phps" />
+    <Content Include="form\php-mailer\examples\contactform.phps" />
+    <Content Include="form\php-mailer\examples\DKIM.phps" />
+    <Content Include="form\php-mailer\examples\exceptions.phps" />
+    <Content Include="form\php-mailer\examples\gmail.phps" />
+    <Content Include="form\php-mailer\examples\gmail_xoauth.phps" />
+    <Content Include="form\php-mailer\examples\mail.phps" />
+    <Content Include="form\php-mailer\examples\mailing_list.phps" />
+    <Content Include="form\php-mailer\examples\pop_before_smtp.phps" />
+    <Content Include="form\php-mailer\examples\sendmail.phps" />
+    <Content Include="form\php-mailer\examples\send_file_upload.phps" />
+    <Content Include="form\php-mailer\examples\send_multiple_file_upload.phps" />
+    <Content Include="form\php-mailer\examples\signed-mail.phps" />
+    <Content Include="form\php-mailer\examples\smtp.phps" />
+    <Content Include="form\php-mailer\examples\smtp_check.phps" />
+    <Content Include="form\php-mailer\examples\smtp_no_auth.phps" />
+    <Content Include="form\php-mailer\examples\ssl_options.phps" />
+    <Content Include="form\php-mailer\extras\EasyPeasyICS.php" />
+    <Content Include="form\php-mailer\extras\htmlfilter.php" />
+    <Content Include="form\php-mailer\extras\ntlm_sasl_client.php" />
+    <Content Include="form\php-mailer\extras\README.md" />
+    <Content Include="form\php-mailer\get_oauth_token.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-am.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ar.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-az.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-be.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-bg.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ca.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ch.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-cs.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-da.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-de.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-el.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-eo.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-es.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-et.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-fa.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-fi.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-fo.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-fr.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-gl.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-he.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-hr.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-hu.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-id.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-it.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ja.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ka.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ko.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-lt.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-lv.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ms.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-nb.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-nl.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-pl.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-pt.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-pt_br.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ro.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-ru.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-sk.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-sl.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-sr.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-sv.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-tr.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-uk.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-vi.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-zh.php" />
+    <Content Include="form\php-mailer\language\phpmailer.lang-zh_cn.php" />
+    <Content Include="form\php-mailer\LICENSE" />
+    <Content Include="form\php-mailer\PHPMailerAutoload.php" />
+    <Content Include="form\php-mailer\VERSION" />
+    <Content Include="form\quote-request.php" />
+    <Content Include="scss\style-blue.scss" />
+    <Content Include="scss\style-bluedark.scss" />
+    <Content Include="scss\style-blueshade.scss" />
+    <Content Include="scss\style-green.scss" />
+    <Content Include="scss\style-red.scss" />
+    <Content Include="scss\style.scss" />
+    <Content Include="scss\_poppins.scss" />
+    <Content Include="scss\_roboto.scss" />
+    <Content Include="Views\Shared\_Layaout1.cshtml" />
+    <Content Include="Views\Shared\_layout2.cshtml" />
+    <Content Include="Views\Shared\_Layouts.cshtml" />
+    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Shared\_Layout3.cshtml" />
+    <Content Include="Views\Shared\_RequestService.cshtml" />
+    <Content Include="Views\ScheduleServices\Create.cshtml" />
+    <Content Include="Views\ScheduleServices\Delete.cshtml" />
+    <Content Include="Views\ScheduleServices\Details.cshtml" />
+    <Content Include="Views\ScheduleServices\Edit.cshtml" />
+    <Content Include="Views\ScheduleServices\Index.cshtml" />
+    <Content Include="Views\ScheduleServices\Success.cshtml" />
+    <Content Include="Views\ContactInfos\Contact.cshtml" />
+    <Content Include="Views\ContactInfos\Delete.cshtml" />
+    <Content Include="Views\ContactInfos\Details.cshtml" />
+    <Content Include="Views\ContactInfos\Edit.cshtml" />
+    <Content Include="Views\ContactInfos\Index.cshtml" />
+    <Content Include="Views\Shared\_Contact.cshtml" />
+    <Content Include="Views\ContactInfos\Success.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Success.cshtml" />
+    <Content Include="Views\ScheduleServices\Indexa.cshtml" />
+    <Content Include="Views\Home\EBS010.cshtml" />
+    <Content Include="Views\Home\Generate.cshtml" />
+    <Content Include="Views\Timers\Create.cshtml" />
+    <Content Include="Views\Timers\Delete.cshtml" />
+    <Content Include="Views\Timers\Details.cshtml" />
+    <Content Include="Views\Timers\Edit.cshtml" />
+    <Content Include="Views\Timers\Index.cshtml" />
+    <Content Include="Views\FileUploaders\Create.cshtml" />
+    <Content Include="Views\FileUploaders\Delete.cshtml" />
+    <Content Include="Views\FileUploaders\Details.cshtml" />
+    <Content Include="Views\FileUploaders\Edit.cshtml" />
+    <Content Include="Views\FileUploaders\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="scss\index.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Edit.cshtml" />
+    <Content Include="Views\UsersAdmin\Details.cshtml" />
+    <Content Include="Views\UsersAdmin\Delete.cshtml" />
+    <Content Include="Views\UsersAdmin\Create.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\var.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationBaseController.cs" />
+    <Compile Include="Controllers\ContactInfosController.cs" />
+    <Compile Include="Controllers\FileControllerController.cs" />
+    <Compile Include="Controllers\FileUploadersController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\ScheduleServicesController.cs" />
+    <Compile Include="Controllers\TimersController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="DAL\FamilyContext.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806020957263_init.cs" />
+    <Compile Include="Migrations\201806020957263_init.Designer.cs">
+      <DependentUpon>201806020957263_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactInfo.cs" />
+    <Compile Include="Models\FileUploader.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ScheduleService.cs" />
+    <Compile Include="Models\Timer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\ApplicationBase\" />
+    <Folder Include="Views\FileController\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806020957263_init.resx">
+      <DependentUpon>201806020957263_init.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55282</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55282/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:55282/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://localhost:55282/</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

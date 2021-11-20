@@ -1,0 +1,169 @@
+﻿@model Identity4Example.Models.ScheduleService
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+<!-- Content -->
+<div class="section section-content section-pad bg-light">
+    <div class="container">
+        <div class="content row">
+            <div class="row row-vm">
+              
+                <div class="col-sm-6 pad-l">
+                    <h5 class="heading-sm-lead">About Us</h5>
+                    <h2>Vision</h2>
+                    <p>
+            To make ordinary Tembisans to be property share owners. The purpose of the stokvel to help young and old who are permanently working or generating a sustainable income every month.
+                    </p>
+
+                    <h2>Mission</h2>
+                    <p>
+
+                     To enable 100 Tembisan to own 10 high rental income properties in the period of 5 years.The stokvel then buys a property that will generate an income.
+
+                    </p>
+
+                    <a href="@Url.Action("About", "Home")" class="btn-link link-arrow-sm">Know More About Us</a>
+                </div>
+
+                <div class="col-sm-6 res-s-bttm pad-r">
+                    <img src="~/image/photo-md-a.jpg" alt="">
+                </div>
+            </div>
+            <!-- // -->
+            <div class="gaps size-lg"></div>
+            <div class="row">
+                <div class="col-sm-4 res-s-bttm">
+                    <div class="bg-white pd-x3 center">
+                        <div class="icon-box style-s2 size-md">
+                            <em class="fa fa-users"></em>
+                        </div>
+                        <h4>Financial Freedom</h4>
+                        <p>
+                            Primary objective is to help each other achieve financial freedom through property investing.
+                        </p>
+                    </div>
+                </div>
+                <!-- // -->
+                <div class="col-sm-4 res-s-bttm">
+                    <div class="bg-white pd-x3 center">
+                        <div class="icon-box style-s2 size-md">
+                            <em class="fa fa-trophy"></em>
+                        </div>
+                        <h4>Profitable Investment</h4>
+                        <p>
+                            Property widely considered to be one of the most reliable and profitable investment vehicles.
+                        </p>
+                    </div>
+                </div>
+                <!-- // -->
+                <div class="col-sm-4">
+                    <div class="bg-white pd-x3 center">
+                        <div class="icon-box style-s2 size-md">
+                            <em class="fa fa-support"></em>
+                        </div>
+                        <h4>No Bank Dependency</h4>
+                        <p>
+                            People can buy land and properties without depending on banks. Members assist each other to acquire & develop property.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Content -->
+<div id="download" class="section section-content section-pad bg-light">
+    <div class="container">
+        <div class="content row">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 pad-r-md res-m-bttm-lg">
+                    <h2>True Economic Empowerment.</h2>
+                    <p>The property Stokvel it’s a true economic empowerment, we want to create wealth that will allow us to retire comfortably at an early age, but most importantly to create a legacy for the next generation.</p>
+                    <h3>Make owning property for blacks more easier and accessible.</h3>
+                    <p>Anyone from any province can join. Members are required to make a payment of R1000 a month and submit a proof of payment. Stokvels are a way so we as black people can empower each other. </p>
+                    <p>We want black people to own more than one property and in most cases, you are not able to when you take out a bond because of the payment period. Tembisa Property Stokvel is trying to make owning property for black South Africans more easier and accessible.</p>
+                    <p><a href="@Url.Action("About", "Home")" class="btn btn-primary">Learn More</a></p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <!-- Form Widget -->
+                    @using (Html.BeginForm("Create", "ScheduleServices", null, FormMethod.Post, new { @class = "form-quote", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="wgs-box wgs-quoteform has-bg light light-filter">
+                            <h3 class="wgs-heading"><strong>Quick Contact</strong></h3>
+                            <div class="wgs-content">
+                                <form id="quote-request" class="form-quote" action="form/contact.php" method="post">
+                                    <div class="form-results"></div>
+                                    <div class="form-group">
+                                        <div class="form-field">
+
+
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = "Name *" } })
+
+
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field">
+
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control required email", placeholder = "Email *", type = "email" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field form-m-bttm">
+
+
+                                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = "Phone *" } })
+                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field">
+
+                                            @Html.EditorFor(model => model.InterestOfService, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = "Subject*" } })
+                                            @Html.ValidationMessageFor(model => model.InterestOfService, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field">
+
+
+                                            @Html.TextAreaFor(model => model.Message, new { @class = "txtarea form-control", rows = '5', placeholder = "Enter Message *" })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <input type="text" class="hidden" name="form-anti-honeypot" value="">
+                                    <button type="submit" class="btn btn-alt sb-h">Submit</button>
+                                </form>
+                            </div>
+                            <div class="wgs-image-bg imagebg">
+                                <img src="image/form-bg.jpg" alt="">
+                            </div>
+                        </div>
+
+                    }
+
+                    <!-- #end Form Widget -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+
+<!-- End Content -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

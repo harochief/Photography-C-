@@ -1,0 +1,404 @@
+﻿@using Identity4Example.Models;	
+@using Identity4Example.DAL
+@using Microsoft.AspNet.Identity
+@{
+    
+  
+    string rtp = User.Identity.GetUserName();
+        string tops = "";
+        string Days = "";
+        string Hours = "";
+        string Mins = "";
+        string Secs = "";
+
+
+  
+}
+
+
+@using IdentitySample.Models
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+
+    var userautho = from e in db.Users
+                    where e.UserName == "chiefnd@gmail.com"
+                    select e;
+
+    var autho = userautho.ToList();
+    foreach (var y in autho)
+    {
+
+        tops = y.UserName;
+    }
+
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>@ViewBag.Title - Tembisa Property Stokvel</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="image/favicon.png" type="image/png" sizes="16x16">
+ 
+
+
+    @Styles.Render("~/css/vendor.bundle.css")
+    @Styles.Render("~/css/style-GreenRed.css")
+ 
+
+
+
+</head>
+<body class="site-body style-v1">
+    <!-- Header -->
+    <header class="site-header header-s1 is-sticky">
+        <!-- Navbar -->
+        <div class="navbar navbar-primary">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img class="logo logo-dark" alt="" src="~/image/logo.png" srcset="image/logo2x.png 2x">
+                    <img class="logo logo-light" alt="" src="~/image/logo-white.png" srcset="image/logo-white2x.png 2x">
+                </a>
+                <!-- #end Logo -->
+                <!-- HeaderTop -->
+                <div class="header-top">
+                    <ul class="top-contact">
+                        <ul class="top-contact">
+                            <li class="t-phone t-phone1 t-phone-s2">
+                                <span><small><em class="color-secondary">Cell</em> Contact Us</small> <em class="fa fa-phone" aria-hidden="true"></em> <a href="#">065 892 1179</a></span>
+                            </li>
+
+                            <li class="quote-btn"><a href="@Url.Action("Contact", "Home")" class="btn">Send Us An Email</a></li>
+                        </ul>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                    
+
+                </div>
+                <!-- #end HeaderTop -->
+                <!-- NavBar Trigger -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav"
+                            aria-expanded="false">
+                        <span class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Q-Button for Mobile -->
+                    <div class="quote-btn"><a class="btn" href="@Url.Action("Contact", "Home")"><span>Join Now </span></a></div>
+                </div>
+                <!-- #end Trigger -->
+                <!-- MainNav -->
+                <nav class="navbar-collapse collapse" id="mainnav">
+                    <ul class="nav navbar-nav">
+                        <li>
+
+                            <a href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("About", "Home")">About</a>
+                        </li>
+                   
+                        
+                        <li>
+                            <a href="@Url.Action("Contact", "ContactInfos")">Contact</a>
+
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Register", "Account")">Join</a>
+
+                        </li>
+                     
+
+
+                    
+                     @if (Request.IsAuthenticated && User.IsInRole("Admin") || rtp == tops)
+                     {
+                            <li>
+                                <a href="#">Administration</a>
+                                <ul>
+                                    <li>@Html.ActionLink("Roles Admin", "Index", "RolesAdmin")</li>
+                                    <li>@Html.ActionLink("Users Admin", "Index", "UsersAdmin")</li>
+
+                                </ul>
+                            </li>
+
+    <li>
+        <a href="@Url.Action("Index", "FileUploaders")">File Upload</a>
+
+    </li>
+
+
+    <li>
+
+
+
+        <a href="@Url.Action("Index", "Timers")">Count Down Days</a>
+
+    </li>
+
+                            <li>
+                                <a href="#">Messages</a>
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index", "ScheduleServices")">Quick Contact</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Index", "ContactInfos")">Contact Messages</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                        }
+                    </ul>
+                </nav>
+                <!-- #end MainNav -->
+            </div>
+        </div>
+        <!-- #end Navbar -->
+ 		<!-- Banner/Static -->
+        <div class="banner banner-static banner-intro">
+
+            @{
+                FamilyContext _db = new FamilyContext();
+                int daysleft = 0;
+                var addre = from e in _db.Timers
+
+                            select e;
+                var address = addre.ToList();
+                foreach (var item in address)
+                {
+                    daysleft = item.Days;
+                }
+
+
+                var file = from e in _db.FileUploaders
+
+                           select e;
+
+                var fileuploader = file.ToList();
+                
+                
+
+                var line = from e in _db.Timers
+
+                           select e;
+
+                var addlines = line.ToList();
+
+
+
+                foreach (var y in addlines)
+                {
+
+
+                    DateTime EventTime = y.GetDate;
+
+
+                    DateTime trial = EventTime.AddDays(daysleft);
+
+                    TimeSpan t = trial - DateTime.Now;
+
+
+
+                    Days = string.Format("{0}", t.Days, t.Hours, t.Minutes, t.Seconds);
+                    Hours = string.Format("{1}", t.Days, t.Hours, t.Minutes, t.Seconds);
+                    Mins = string.Format("{2}", t.Days, t.Hours, t.Minutes, t.Seconds);
+                    Secs = string.Format("{3}", t.Days, t.Hours, t.Minutes, t.Seconds);
+
+               
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 ">
+
+                                @foreach (var item in fileuploader)
+                                {
+                                    if (item.Files.Any(f => f.FileType == Identity4Example.Models.FileType.Avatar))
+                                    {
+
+
+
+                                        <span> <img class="img-responsive" src="~/File?id= @item.Files.First(f => f.FileType == Identity4Example.Models.FileType.Avatar).FileId" alt="avatar" /></span>
+
+
+                                    }
+
+
+
+                                }
+
+                            </div>
+                          @if (Days == "0" && Hours == "0" && Mins == "0" )
+                     {
+                            <div style="background-color:rebeccapurple; margin-top:80px; padding-top:20px;height:290px;" class="col-md-5 ">
+                                <h4><span style="padding-left:10px; color:white;font-size:20px; font-weight:600">No More Days Left To Buy This Property </span></h4>
+
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:32px; font-weight:600">0 <span style="margin-left:15px">:</span> </span> </div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:32px; font-weight:600">0 <span style="margin-left:15px">:</span> </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:32px; font-weight:600">0 <span style="margin-left:15px">:</span> </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:32px; font-weight:600">0 </span></div>
+                            <div class="clearfix">
+                        </div>
+                        <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:18px; ">Days  </span> </div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:18px; :600">Hours  </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:18px; ">Mins </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:18px; ">Secs </span></div>
+                                <br /><br />
+                                <p class="more-cta"><a href="@Url.Action("Register", "Account")" class="btn btn-light btn-outline">Join Now</a> <a href="@Url.Action("Contact", "ContactInfos")" class="btn btn-alt">Contact Us</a></p>   
+                        </div>
+                     }
+
+                          else
+                          {
+                            <div style="background-color:rebeccapurple; margin-top:80px; padding-top:20px;height:290px;" class="col-md-5 ">
+                                <h4><span style="padding-left:10px; color:white;font-size:20px; font-weight:600">Days Left To Buy This Property</span></h4>
+
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:32px; font-weight:600">@Days <span style="margin-left:15px">:</span> </span> </div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:32px; font-weight:600">@Hours <span style="margin-left:15px">:</span> </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:32px; font-weight:600">@Mins <span style="margin-left:15px">:</span> </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:32px; font-weight:600">@Secs </span></div>
+                                <div class="clearfix">
+                                </div>
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:18px; ">Days  </span> </div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:18px; :600">Hours  </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3 "><span style="color:white;font-size:18px; ">Mins </span></div>
+                                <div class="col-md-3 col-xs-3 col-sm-3"><span style="color:white;font-size:18px; ">Secs </span></div>
+                                <br /><br />
+                                <p class="more-cta"><a href="@Url.Action("Register", "Account")" class="btn btn-light btn-outline">Join Now</a> <a href="@Url.Action("Contact", "ContactInfos")" class="btn btn-alt">Contact Us</a></p>
+                            </div>
+
+                          }
+
+                            </div>
+                    </div>
+
+                       
+
+
+                }
+            }
+
+
+        </div>
+
+		<!-- #end Banner -->
+</header>
+    <!-- End Header -->
+
+
+   @RenderBody()
+
+
+    <!-- Call Action -->
+    <div class="call-action bg-primary">
+        <div class="cta-block">
+            <div class="container">
+                <div class="content row">
+                    <div class="cta-sameline">
+                        <h3>Great Investment Opportunity.</h3>
+                        <a class="btn btn-outline" href="@Url.Action("Contact", "Home")">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Section -->
+    <!-- Footer Widget-->
+    <div class="footer-widget section-pad-md">
+        <div class="container">
+            <div class="row">
+                <div class="widget-row row">
+              
+                    <div class="footer-col col-md-4 col-sm-4 res-m-bttm">
+                        <!-- Each Widget -->
+                        <div class="wgs wgs-footer wgs-menu">
+                            <h5 class="wgs-title">Quick Links</h5>
+                            <div class="wgs-content">
+                                <ul class="menu">
+                                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                    <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+
+
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="footer-col col-md-4 col-sm-4 res-m-bttm">
+                        <!-- Each Widget -->
+                        <div class="wgs wgs-footer">
+                            <h5 class="wgs-title">Stokvel Information</h5>
+                            <div class="wgs-content">
+                                <ul class="contact-info">
+                                    <li>
+                                        <span>Phone</span> : 065 892 1179<br>
+                                        
+                                    </li>
+                                   
+                                    <li>Giving excellent opportunity for ordinary South Africans to own property.</li>
+                                </ul>
+                                <ul class="social social-v2">
+                                    <li><a href="#"><em class="fa fa-facebook" aria-hidden="true"></em></a></li>
+                                    <li><a href="#"><em class="fa fa-twitter" aria-hidden="true"></em></a></li>
+                                    <li><a href="#"><em class="fa fa-linkedin" aria-hidden="true"></em></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="footer-col col-md-4 col-sm-4">
+                        <!-- Each Widget -->
+                        <div class="wgs wgs-footer">
+                            <div class="wgs-content">
+                                <h5 class="wgs-title">About Tembisa Property Stokvel</h5> <br />
+                                <div class="footer-logo"><img src="image/logo-white.png" srcset="image/logo-white2x.png 2x" alt=""></div>
+                               
+                                <p>Tembisa Property Stokvel is trying to make owning property for black South Africans easier and accessible. We are all familiar with what Stokvel is, our parents and grandparents have been doing it for decades.</p>
+                            </div>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                </div><!-- Widget Row -->
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Widget -->
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="site-copy col-sm-7">
+                    <p>Copyright &copy; 2018 Tembisa Property Stokvel. All Rights Reserved <span class="sep"> . </span> </p>
+                </div>
+                <div class="site-by col-sm-5 al-right">
+                    <p>Created By <a href="https://fhatuwasystems.co.za/" target="_blank">Fhatuwa Systems</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Copyright -->
+    <!-- JavaScript Bundle -->
+  
+    <!-- End script -->
+    @Scripts.Render("~/js/jquery.bundle.js")
+    @Scripts.Render("~/js/script.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+   
+
+   
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

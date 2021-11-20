@@ -1,0 +1,87 @@
+﻿@model Identity4Example.Models.ContactInfo
+
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layaout1.cshtml";
+}
+
+<!-- Banner -->
+<div class="banner banner-static banner-medium has-bg lighter-filter">
+    <div class="banner-cpn">
+        <div class="container">
+            <div class="content row">
+                <div class="banner-text light style-modern">
+                    <h1 class="page-title">GET IN TOUCH!</h1>
+                    <p>Need to know details about our stokvel, please give us a call.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-bg imagebg">
+        <img src="~/image/banner-inner.jpg" alt="">
+    </div>
+</div>
+<!-- End Banner -->
+<!-- Content -->
+<div class="section section-contents section-contact section-pad">
+    <div class="container">
+        <div class="content row">
+            <div class="contact-content row">
+                <div class="drop-message col-md-8 pad-r res-m-bttm">
+
+
+                    <h2><span class="green">Contact  </span><span class="green1">Form</span></h2>
+                    <div class="row">
+                        <div class="col-sm-5 res-s-bttm-sm">
+                            <p>
+                                <strong>Tembisa Property Stokvel.</strong><br>
+
+                                27 Demba Street, Tembisa <br>
+                                Gauteng, South Africa.
+                            </p>
+                        </div>
+                        <div class="col-sm-4 res-s-bttm-sm">
+                            <p>
+                                <strong>Contact Number</strong> <br>
+                                Mobile: 065 892 1179<br>
+
+
+                            </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>
+                                <strong>Contact Hours</strong><br>
+                                Monday-Sunday<br>
+                                8:00am-7:00pm
+                            </p>
+                        </div>
+                    </div>
+                    <div class="gaps size-xs"></div>
+                    <div class="clear"></div>
+                    @Html.Partial("_Contact")
+                </div>
+                <div class="contact-maps col-md-4">
+                    <!-- Map -->
+                    <div class="map-holder map-contact-vertical">
+                        <div id="gmap"></div>
+                        <span class="gaps size-xs"></span>
+                        <small><a href="#" class="btn-link">View on google Map &rsaquo;</a></small>
+                    </div>
+                    <!-- End map -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,50 @@
+﻿@model Identity4Example.Models.FileUploader
+
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+    Layout = "~/Views/Shared/_layout3.cshtml";
+}
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "FileUploaders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+   
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+
+
+        @if (Model.Files.Any(f => f.FileType == Identity4Example.Models.FileType.Avatar))
+        {
+            <div class="form-group">
+                <span class="control-label col-md-2"><strong>Current Picture</strong></span>
+                <div class="col-md-10">
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == Identity4Example.Models.FileType.Avatar).FileId" alt="avatar" />
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.Label("Picture", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="Avatar" name="upload" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

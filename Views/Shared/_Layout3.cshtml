@@ -1,0 +1,282 @@
+﻿@using Microsoft.AspNet.Identity
+@{  
+    string rtp = User.Identity.GetUserName();
+    string tops = "";
+   
+
+
+
+}
+
+
+@using IdentitySample.Models
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+
+    var userautho = from e in db.Users
+                    where e.UserName == "chiefnd@gmail.com"
+                    select e;
+
+    var autho = userautho.ToList();
+    foreach (var y in autho)
+    {
+
+        tops = y.UserName;
+    }
+
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>@ViewBag.Title - Tembisa Property Stokvel</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="image/favicon.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="css/vendor.bundle.css">
+    <link id="style-css" rel="stylesheet" type="text/css" href="css/style.css">
+
+    @Styles.Render("~/css/vendor.bundle.css")
+    @Styles.Render("~/css/style-GreenRed.css")
+
+
+</head>
+<body class="site-body style-v1">
+    <!-- Header -->
+    <header class="site-header header-s1 is-sticky">
+        <!-- Navbar -->
+        <div class="navbar navbar-primary">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img class="logo logo-dark" alt="" src="~/image/logo.png" srcset="image/logo2x.png 2x">
+                    <img class="logo logo-light" alt="" src="~/image/logo-white.png" srcset="image/logo-white2x.png 2x">
+                </a>
+                <!-- #end Logo -->
+                <!-- HeaderTop -->
+                <div class="header-top">
+                    <ul class="top-contact">
+                        <ul class="top-contact">
+                            <li class="t-phone t-phone1 t-phone-s2">
+                                <span><small><em class="color-secondary">Cell</em> Contact Us</small> <em class="fa fa-phone" aria-hidden="true"></em> <a href="#">065 892 1179</a></span>
+                            </li>
+
+                            <li class="quote-btn"><a href="@Url.Action("Contact", "Home")" class="btn">Send Us An Email</a></li>
+                        </ul>
+                    </ul>
+
+                    @Html.Partial("_LoginPartial")
+                </div>
+                <!-- #end HeaderTop -->
+                <!-- NavBar Trigger -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav"
+                            aria-expanded="false">
+                        <span class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Q-Button for Mobile -->
+                    <div class="quote-btn"><a class="btn" href="request-service.html"><span>Request Service</span></a></div>
+                </div>
+                <!-- #end Trigger -->
+                <!-- MainNav -->
+                <nav class="navbar-collapse collapse" id="mainnav">
+                    <ul class="nav navbar-nav">
+                        <li>
+
+                            <a href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("About", "Home")">About</a>
+                        </li>
+
+
+                        <li>
+                            <a href="@Url.Action("Contact", "ContactInfos")">Contact</a>
+
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Register", "Account")">Join</a>
+
+                        </li>
+
+
+
+                       @if (Request.IsAuthenticated && User.IsInRole("Admin") || rtp == tops)
+                       {
+                            <li>
+                                <a href="#">Administration</a>
+                                <ul>
+                                    <li>@Html.ActionLink("Roles Admin", "Index", "RolesAdmin")</li>
+                                    <li>@Html.ActionLink("Users Admin", "Index", "UsersAdmin")</li>
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Index", "FileUploaders")">File Upload</a>
+
+                            </li>
+
+
+                            <li>
+
+
+
+                                <a href="@Url.Action("Index", "Timers")">Count Down Days</a>
+
+                            </li>
+
+                            <li>
+                                <a href="#">Messages</a>
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index", "ScheduleServices")">Quick Contact</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Index", "ContactInfos")">Contact Messages</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                        }
+                    </ul>
+                </nav>
+                <!-- #end MainNav -->
+            </div>
+        </div>
+        <!-- #end Navbar -->
+
+    </header>
+    <!-- End Header -->
+
+
+   
+
+
+    <!-- Content -->
+    <div class="section section-contents section-pad">
+        <div class="container">
+            <div class="content row">
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                  
+                    </div>
+                    <!-- Sidebar -->
+               
+                    <!-- Sidebar #end -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer Widget-->
+    <div class="footer-widget section-pad-md">
+        <div class="container">
+            <div class="row">
+                <div class="widget-row row">
+
+                    <div class="footer-col col-md-4 col-sm-4 res-m-bttm">
+                        <!-- Each Widget -->
+                        <div class="wgs wgs-footer wgs-menu">
+                            <h5 class="wgs-title">Quick Links</h5>
+                            <div class="wgs-content">
+                                <ul class="menu">
+                                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                    <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+
+
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="footer-col col-md-4 col-sm-4 res-m-bttm">
+                        <!-- Each Widget -->
+                        <div class="wgs wgs-footer">
+                            <h5 class="wgs-title">Stokvel Information</h5>
+                            <div class="wgs-content">
+                                <ul class="contact-info">
+                                    <li>
+                                        <span>Phone</span> : 065 892 1179<br>
+
+                                    </li>
+
+                                    <li>Giving excellent opportunity for ordinary South Africans to own property.</li>
+                                </ul>
+                                <ul class="social social-v2">
+                                    <li><a href="#"><em class="fa fa-facebook" aria-hidden="true"></em></a></li>
+                                    <li><a href="#"><em class="fa fa-twitter" aria-hidden="true"></em></a></li>
+                                    <li><a href="#"><em class="fa fa-linkedin" aria-hidden="true"></em></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="footer-col col-md-4 col-sm-4">
+                        <!-- Each Widget -->
+                        <div class="wgs wgs-footer">
+                            <div class="wgs-content">
+                                <h5 class="wgs-title">About Tembisa Property Stokvel</h5> <br />
+                                <div class="footer-logo"><img src="image/logo-white.png" srcset="image/logo-white2x.png 2x" alt=""></div>
+
+                                <p>Tembisa Property Stokvel is trying to make owning property for black South Africans easier and accessible. We are all familiar with what Stokvel is, our parents and grandparents have been doing it for decades.</p>
+                            </div>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                </div><!-- Widget Row -->
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Widget -->
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="site-copy col-sm-7">
+                    <p>Copyright &copy; 2018 Tembisa Property Stokvel. All Rights Reserved <span class="sep"> . </span> </p>
+                </div>
+                <div class="site-by col-sm-5 al-right">
+                    <p>Created By <a href="https://fhatuwasystems.co.za/" target="_blank">Fhatuwa Systems</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Copyright -->
+    <!-- JavaScript Bundle -->
+    <!-- Google Map Script -->
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDNaa8LOQISEST6NIGC78vmdnIOynR2SeU"></script>
+    <script src="js/gmaps.js"></script>
+
+
+    <script src="js/jquery.bundle.js"></script>
+    <!-- Theme Script init() -->
+    <script src="js/script.js"></script>
+    <!-- End script -->
+    @Scripts.Render("~/https://maps.google.com/maps/api/js?key=AIzaSyDNaa8LOQISEST6NIGC78vmdnIOynR2SeU")
+    @Scripts.Render("~/js/gmaps.js")
+    @Scripts.Render("~/js/jquery.bundle.js")
+    @Scripts.Render("~/js/script.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
+
+
+

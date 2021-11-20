@@ -1,0 +1,37 @@
+﻿@model Identity4Example.Models.FileUploader
+
+@{
+    ViewBag.Title = "Delete";
+}
+@{
+    Layout = "~/Views/Shared/_layout3.cshtml";
+}
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FileUploader</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @if (Model.Files.Any(f => f.FileType == Identity4Example.Models.FileType.Avatar))
+        {
+            <dt>
+                Avatar
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == Identity4Example.Models.FileType.Avatar).FileId" alt="avatar" />
+            </dd>
+        }
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,65 @@
+﻿@model Identity4Example.Models.ScheduleService
+
+@using (Html.BeginForm("Create", "ScheduleServices", null, FormMethod.Post, new { @class = "form-quote", role = "form" }))
+
+
+    {
+    @Html.AntiForgeryToken()
+
+
+<div class="wgs-box wgs-quoteform has-bg light light-filter">
+    <h3 class="wgs-heading"><strong>Schedule Your Service</strong></h3>
+    <div class="wgs-content">
+        <form id="quote-request" class="form-quote" action="form/contact.php" method="post">
+            <div class="form-results"></div>
+            <div class="form-group">
+                <div class="form-field">
+                   
+                   
+                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = "Name *" } })
+              
+                    
+                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-field">
+                    
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control required email", placeholder = "Email *", type = "email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-field form-m-bttm">
+              
+
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = "Phone" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-field">
+                  
+                    @Html.EditorFor(model => model.InterestOfService, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = "Interest of Service" } })
+                    @Html.ValidationMessageFor(model => model.InterestOfService, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-field">
+                   
+
+                    @Html.TextAreaFor(model => model.Message, new { @class = "txtarea form-control", rows = '5', placeholder = "Enter Message *" })
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input type="text" class="hidden" name="form-anti-honeypot" value="">
+            <button type="submit" class="btn btn-alt sb-h">Submit</button>
+        </form>
+    </div>
+    <div class="wgs-image-bg imagebg">
+        <img src="image/form-bg.jpg" alt="">
+    </div>
+</div>
+    
+}
+
